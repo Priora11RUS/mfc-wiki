@@ -1,0 +1,189 @@
+html,
+body {
+    height: 100%;
+    background: #edeef0;
+}
+
+.fother {
+    height: 100px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.head_panel {
+    border-radius: 10px;
+    padding: 8px;
+}
+/* Форма авторизации */
+/* Закругленные края у центральной формы на странице авторизации */
+.autho_form {
+    border-radius: 10px;
+
+}
+/* Закругленные края у фотографии на странице авторизации */
+.autho_form-photo {
+    border-radius: 10px 10px 0 0;
+
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.search {
+    height: 55px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.but-button-search{
+    position: absolute;
+    right: 13px;
+    top: 8px; 
+}
+.search_input {
+    display: block;
+    width: 100%;
+    color: rgb(0, 0, 0);
+    border: 0;
+    outline: 0;
+    position: absolute;
+    background: none;
+    margin-top: 5px;
+    caret-color: transparent;
+    line-height: 40px;
+    transition: width 0.4s linear;
+}
+
+.search .search_input {
+    padding: 13px 13px 13px 16px;
+    height: 24px;
+    caret-color: red;
+    transition: width 0.4s linear;
+}
+
+.search:hover>.search_icon {
+    background: #fc0;
+    color: rgb(0, 0, 0);
+}
+
+a:link {
+    text-decoration: none;
+}
+
+.font-text-button {
+    font-size: 10px;
+}
+
+/* Страница авторизации
+/* Авторизация. Цвет блока в центре. */
+.cardbody-color {
+    background-color: #fdfdfd;
+}
+
+/* Авторизация. Отключение подчеркивания текста */
+a {
+    text-decoration: none;
+}
+
+/* Текст в верхнем блоке*/
+.text-color-head {
+    color: black;
+}
+
+.text-color-head:hover {
+    color: #204891;
+}
+
+/* Текст в подвале*/
+.text-color-fother {
+    color:#fff;
+}
+.text-color-fother:hover{
+    color:#dfdfdf;
+}
+.fother-hieght-row {
+    min-height: 6rem;
+}
+
+/* Выпадающие подсказки */
+/* Выпадающий поиск параметры */
+.ui-autocomplete {
+    border-radius: 0.25rem;
+    background-color: #ffffff;
+    padding: 0 0.6rem;
+    font-family: 'ptmono';
+}
+
+/* Параметры каждого элемента */
+.ui-menu-item {
+    border: 1px solid #ffffff;
+    border-radius: 0.25rem;
+}
+
+/* Эффекты элементов */
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active,
+a.ui-button:active,
+.ui-button:active,
+.ui-button.ui-state-active:hover {
+    background-color: #ffffff;
+    border-color: #ffffff;
+    color: #000000;
+}
+/* Конец блока подсказок */
+
+/* Блок новости */
+
+.feed{
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 8px 0;
+}
+
+/* Страница с публикацией */
+
+.nav-link-feed {
+    color:#346ca3;
+}
+
+.nav-link-feed:hover,
+.nav-link-feed.active {
+    color: #ff0000;
+}
+
+.text-color-feed {
+    color: green
+}
+
+/* Ширина текстового редактора Ckeditor */
+.django-ckeditor-widget{
+    width: 100%;
+  }
+
+/* Текст поверх изображения */
+.images-text-up{
+    display:inline-block;   
+    position:relative;
+}
+.text-up { 
+    display: inline-block; 
+    position: absolute; 
+    background-color: rgba(0, 0, 0, 0.418); 
+    padding: 5px 5px 5px 5px;
+    color: white;
+    font-size: 40px;
+}
+
+.text-setting-post{
+    font-size: 18px;
+}

@@ -1,0 +1,22 @@
+
+<!-- Расширяем базовй шаблон -->
+{% extends 'wiki/base.html' %}
+<!-- Блок контента -->
+{% block content %}
+<section class="feed mt-2">
+    <div class="container mb-2">
+        <div class="row">
+            {% autoescape on %}
+            <div class="col-12 border-bottom">
+              {% for post in object_list %}
+                <p></p>
+                <h5><a href="{{ post.get_absolute_url }}" class="nav-link-feed">{{post.title}}</a></h5>
+                <p class="text-start">{{post.content|safe|striptags|truncatewords:25}}</p>
+                <p class="text-start text-color-feed">Создано: {{post.time_create|date:'d.m.Y'}}&ensp; Автор: {{post.user}}</p>
+            </div>
+            {% endfor %}
+            {% endautoescape %}
+        </div>
+    </div>
+</section>
+{% endblock content %}

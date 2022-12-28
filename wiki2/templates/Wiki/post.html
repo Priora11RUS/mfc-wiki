@@ -1,0 +1,101 @@
+<!-- Загружаем скелет станицы -->
+{% extends 'wiki/base.html' %}
+<!-- Блок контента -->
+{% block content %}
+
+<section class="feed mt-2">
+    {% if user.is_authenticated and perms.main.add_post %}
+    <div class="container">
+        <div class="row border-bottom">
+            <div class="col-md-auto">
+                <form action="." method="get">
+                    {% csrf_token %}
+                    <button formaction="javascript:history.go(-1)" class="btn btn-light" type="submit" value="update">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor"
+                            class="bi bi-arrow-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+                            </a>
+                        </svg>
+                        Назад</button>
+                </form>
+            </div>
+
+            <div class="col-lg-6 mx-3">
+                <p class="text-color-feed pt-2 text-setting-post">Создано:
+                    {{post.time_create|date:'d.m.Y'}}&ensp; Автор:
+                    {{post.user}}</p>
+            </div>
+
+            <div class="col-lg-4 text-end p-0 mx-4">
+                <form action="." method=get">
+                    {% csrf_token %}
+                    <button formaction="{% url 'edit_post' post.pk %}" class="btn btn-primary" type="submit"
+                        value="update">Редактировать
+                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor"
+                            class="bi bi-pencil" viewBox="0 0 16 16">
+                            <path
+                                d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+                        </svg></button>
+                    <button formaction="{% url 'delete_page' id=post.id %}" class="btn btn-danger" type="submit">Удалить
+                        <svg width="18" height="18" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M4.11 2.697L2.698 4.11 6.586 8l-3.89 3.89 1.415 1.413L8 9.414l3.89 3.89 1.413-1.415L9.414 8l3.89-3.89-1.415-1.413L8 6.586l-3.89-3.89z"
+                                fill="white"></path>
+                        </svg></button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="container">
+        <div class="row border-bottom justify-content-between">
+            <div class="col-md-auto">
+                <form action="." method="get">
+                    {% csrf_token %}
+                    <button formaction="javascript:history.go(-1)" class="btn btn-light" type="submit" value="update">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor"
+                            class="bi bi-arrow-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+                            </a>
+                        </svg>
+                        Назад</button>
+                </form>
+            </div>
+
+            <div class="col-md-auto">
+                <p class="text-color-feed pt-2 text-setting-post">Создано:
+                    {{post.time_create|date:'d.m.Y'}}&ensp; Автор:
+                    {{post.user}}</p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="container pt-2">
+        <div class="row">
+            <div class="col-12">
+                <!-- Отоброжение заголовка -->
+                <h5 class="text-center pt-2 mb-4">{{post.title}}</h5>
+                <!-- Отоброжение изображения на странице -->
+                {% if post.images %}
+                <img class="img-responsive" alt="not found" src="{{post.images.url}}" />
+                {% endif %}
+                {{post.content|safe|linebreaks}}
+            </div>
+        </div>
+    </div>
+
+    <div class="container pt-2">
+        <div class="row border-top">
+            <div class="col-12 mt-2">
+                {% if post.file %}
+                <a class="btn btn-danger" href="{{post.file.url}}" download="{{post.file.url}}">{{post.filename}}
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content%}
