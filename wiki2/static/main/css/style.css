@@ -187,3 +187,13 @@ a.ui-button:active,
 .text-setting-post{
     font-size: 18px;
 }
+
+.size_cont_zap{
+    flex: 1 1 auto;
+    white-space: nowrap;
+}
+
+
+.profile_block {
+    border-radius: 10px;
+}

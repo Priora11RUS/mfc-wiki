@@ -1,5 +1,6 @@
 import os
 from django.db import models
+from pytils.translit import slugify
 from django.urls import reverse
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.auth.models import User
@@ -17,6 +18,13 @@ class Post(models.Model):
 # Делаем имя файлам
     def filename(self):
         return os.path.basename(self.file.name)
+
+# Автоматическое формирование slug за пределами админ панели
+    def save(self, *args, **kwargs):
+        if self.title:
+            self.slug =slugify(self.title)
+
+        super(Post, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.title

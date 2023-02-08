@@ -1,7 +1,7 @@
 from django import forms
-from django.forms import ClearableFileInput
 from django.core.exceptions import ValidationError
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+# from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm
 from django.contrib.auth.models import User
 
 from .models import *
@@ -15,18 +15,13 @@ class AddPostForm(forms.ModelForm):
             'class': 'form-control',
             'placeholder': 'Введите заголовок статьи'
              })
-        self.fields["slug"].widget.attrs.update({
-            'type': 'text',
-            'class': 'form-control',
-            'placeholder': 'Укажите url адрес'
-             })
         self.fields["file"].widget.attrs.update({
             'class': 'form-control',
             'multiple': True
              })
     class Meta:   
         model = Post
-        fields = ['title', 'slug', 'content', 'file']
+        fields = ['title', 'content', 'file']
         
 
 # Собственный валидатор
@@ -90,3 +85,28 @@ class CustomLoginForm(AuthenticationForm):
             'placeholder': 'Пароль'
         })
 
+# Добавляем класса формы, описывающий оформление полей смены пароля
+class PasswordChageViewForm(PasswordChangeForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["old_password"].widget.attrs.update({
+            'name':'old_password',
+            'id':'inputPassword5',
+            'type': 'password',
+            'class': 'form-control',
+            'aria-describedby': 'passwordHelpBlock'
+             })
+        self.fields["new_password1"].widget.attrs.update({
+            'name':'new_password1',
+            'id':'inputPassword5',
+            'type': 'password',
+            'class': 'form-control',
+            'aria-describedby': 'passwordHelpBlock'
+             })
+        self.fields["new_password2"].widget.attrs.update({
+            'name':'new_password2',
+            'id':'inputPassword5',
+            'type': 'password',
+            'class': 'form-control',
+            'aria-describedby': 'passwordHelpBlock'
+             })

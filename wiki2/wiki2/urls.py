@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include('main.urls')),
     path('admin/', admin.site.urls), # Админ панель ссылка
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('accounts/', include('accounts.urls'))
 ]
 # Загрузка файлов в режиме отладки
 if settings.DEBUG:

@@ -11,6 +11,10 @@ class PostAdmin(admin.ModelAdmin):
     search_fields = ('title',)
     prepopulated_fields = {"slug": ("title",)}
     save_on_top = True
+
+class CategoryAdmin(admin.ModelAdmin):
+    prepopulated_fields = {"slug": ("name",)}
+
 # Регистрация нашего приложения в админ панели сайта
 admin.site.register(Post, PostAdmin)
 

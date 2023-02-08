@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'bootstrap5',
     'ckeditor',
     'ckeditor_uploader',
+    'pytils',
+    'accounts',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -82,12 +85,8 @@ WSGI_APPLICATION = 'wiki2.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'wiki',
-	'USER': 'adminwiki',
-	'PASSWORD': '37!Kolva',
-	'HOST': 'localhost',
-	'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 

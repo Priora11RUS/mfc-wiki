@@ -5,9 +5,12 @@ from django.contrib import messages
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy, reverse
+from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from .forms import AddPostForm, RegisterUserForm
+
+from .forms import AddPostForm, RegisterUserForm, PasswordChageViewForm
 from .models import *
+from.utils import *
 
 class FeedHtml(ListView):
     model = Post
@@ -51,6 +54,7 @@ class AddNewPost(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     form_class = AddPostForm
     template_name = 'wiki/add_post.html'
     permission_required = ('main.add_post')
+    
 
 # Автор поста
     def form_valid(self, form):
@@ -99,7 +103,7 @@ def RegisterUser(request):
             if form.is_valid():
                 form.save()
                 username = form.cleaned_data.get('username')
-                messages.success(request, f'Создан аккаунт {username}!')
+                messages.success(request, f'Создан аккаунт {username}')
                 return redirect('login')
         else:
             form = RegisterUserForm()
@@ -109,9 +113,18 @@ def RegisterUser(request):
         }
         return render(request, 'wiki/register.html', context=regist_user)
 
-@login_required
-def profile(request):
-    return render(request, 'wiki/profile.html')
+# Смена пароля в профиле пользователя
+class PasswordChageProfile(SuccessMessageMixin, PasswordChangeView):
+    form_class = PasswordChageViewForm
+    template_name = 'wiki/profile.html'
+    success_message = "Ваш пароль был успешно изменен"
+    success_url = reverse_lazy('profile')
+    
+    def get_context_data(self, *, object_list = None, **kwargs):
+        context = super().get_context_data(**kwargs) 
+        context ['title'] = 'Личный кабинет'
+        return context
+
 
 # Поиск на главной странице
 class SearchResultsView(ListView):
@@ -125,7 +138,7 @@ class SearchResultsView(ListView):
          )
         return object_list
 
-# Авторизация
+# Авторизация    
 def login(request):
     dictionary = {
         'title':'Авторизация'

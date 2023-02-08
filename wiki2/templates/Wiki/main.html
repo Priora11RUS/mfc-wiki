@@ -22,8 +22,8 @@
     <div class="container pt-2 mb-2 justify-content-between">
       <div class="row d-flex navbar-light light bg-light head_panel align-items-center">
         {% if user.is_authenticated and not perms.main.add_post %}
-        <div class="col-lg-10 col-md-9 col-sm-8">
-          <a class="navbar-brand px-4" href="{% url 'home' %}"><img src="{% static '/main/images/logomfc.png' %}" alt=""
+        <div class="col-lg-10 col-md-9 col-sm-8 size_cont_zap">
+          <a class="navbar-brand px-2" href="{% url 'home' %}"><img src="{% static '/main/images/logomfc.png' %}" alt=""
               width="102" height="29"></a>
           <a href="{% url 'home' %}" class="text-color-head px-2">Главная</a>
           <a href="{% url 'feed' %}" class="text-color-head px-2">Записи</a>
@@ -44,8 +44,8 @@
           </div>
         </div>
         {% elif user.is_authenticated and perms.main.add_post %}
-        <div class="col-lg-10 col-md-9 col-sm-8">
-          <a class="navbar-brand px-4" href="{% url 'home' %}"><img src="{% static '/main/images/logomfc.png' %}" alt=""
+        <div class="col-lg-10 col-md-9 col-sm-8 size_cont_zap">
+          <a class="navbar-brand px-2" href="{% url 'home' %}"><img src="{% static '/main/images/logomfc.png' %}" alt=""
               width="102" height="29"></a>
           <a href="{% url 'home' %}" class="text-color-head px-2">Главная</a>
           <a href="{% url 'feed' %}" class="text-color-head px-2">Записи</a>
@@ -67,13 +67,13 @@
           </div>
         </div>
         {% else %}
-        <div class="col-lg-9 col-md-9 col-sm-8">
-          <a class="navbar-brand px-4" href="{% url 'home' %}"><img src="{% static '/main/images/logomfc.png' %}" alt=""
+        <div class="col-lg-9 col-md-8 col-sm-7 size_cont_zap">
+          <a class="navbar-brand px-2" href="{% url 'home' %}"><img src="{% static '/main/images/logomfc.png' %}" alt=""
               width="102" height="29"></a>
           <a href="{% url 'home' %}" class="text-color-head px-2">Главная</a>
           <a href="{% url 'feed' %}" class="text-color-head px-2">Записи</a>
         </div>
-        <div class="col-lg-3 col-md-3 col-sm-4">
+        <div class="col-lg-3 col-md-4 col-sm-5 size_cont_zap">
           <a href="{% url 'login' %}" class="text-color-head px-2">Авторизация</a>
           <a href="{% url 'register' %}" class="text-color-head px-2">Регистрация</a>
         {% endif %}
