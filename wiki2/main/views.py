@@ -12,6 +12,7 @@ from .forms import AddPostForm, RegisterUserForm, PasswordChageViewForm
 from .models import *
 from.utils import *
 
+# Список статей на одной странице
 class FeedHtml(ListView):
     model = Post
     paginate_by = 10 # Количество элементов на одной странице
@@ -22,6 +23,18 @@ class FeedHtml(ListView):
     def get_context_data(self, *, object_list = None, **kwargs):
         context = super().get_context_data(**kwargs) 
         context ['wiki'] = 'Публикации — Wiki'
+        return context
+
+# Список всех публикаций
+class ListFeed(ListView):
+    model = Post
+    template_name = 'Wiki/allfeed.html'
+    context_object_name = 'post'
+    allow_empty = False
+
+    def get_context_data(self, *, object_list = None, **kwargs):
+        context = super().get_context_data(**kwargs) 
+        context ['wiki'] = 'Все публикации — Wiki'
         return context
 
 def index(request):

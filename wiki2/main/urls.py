@@ -7,6 +7,7 @@ urlpatterns = [
     path('', views.index, name='home'), # Главная страница
     path('add-new/', views.AddNewPost.as_view(), name='add_new'), # Вкладка новой статьи
     path('feed/', views.FeedHtml.as_view(), name='feed'), # Список публикаций
+    path('allfeed/', views.ListFeed.as_view(), name='allfeed'), # Список публикаций
     path('login/', LoginView.as_view(template_name='wiki/login.html', authentication_form=CustomLoginForm), name='login'), # Авторизация
     path('logout/', LogoutView.as_view(template_name='wiki/logout.html'), name='logout'), # Выход из системы
     path('register/', views.RegisterUser, name='register'), # Регистрация

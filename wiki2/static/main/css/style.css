@@ -197,3 +197,14 @@ a.ui-button:active,
 .profile_block {
     border-radius: 10px;
 }
+
+/* Страница с публикацией */
+
+.nav-link-allfeed {
+    color:#000000;
+}
+
+.nav-link-allfeed:hover,
+.nav-link-allfeed.active {
+    color: #ff0000;
+}

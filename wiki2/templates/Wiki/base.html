@@ -15,69 +15,72 @@
 
 <body class="d-flex flex-column min-vh-100">
      <!-- Верхняя панель -->
-  <header>
-    <div class="container pt-2 mb-2 justify-content-between">
-      <div class="row d-flex navbar-light light bg-light head_panel align-items-center">
-        {% if user.is_authenticated and not perms.main.add_post %}
-        <div class="col-lg-10 col-md-9 col-sm-8">
-          <a class="navbar-brand px-4" href="{% url 'home' %}"><img src="{% static '/main/images/logomfc.png' %}" alt=""
-              width="102" height="29"></a>
-          <a href="{% url 'home' %}" class="text-color-head px-2">Главная</a>
-          <a href="{% url 'feed' %}" class="text-color-head px-2">Записи</a>
-        </div>
-        <div class="col-lg-2 col-md-3 col-sm-4">
-          <div class="dropdown text-end">
-            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
-              data-bs-toggle="dropdown" aria-expanded="false">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#293133" class="bi bi-person-circle" viewBox="0 0 16 16">
-                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-              </svg>
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="dropdownUser1">
-              <li><a class="dropdown-item text-color-head" href="{% url 'profile' %}">{{ user.username }}</a></li>
-              <li><a class="dropdown-item text-color-head" href="{% url 'logout' %}">Выход</a></li>
-            </ul>
+     <header>
+      <div class="container pt-2 mb-2 justify-content-between">
+        <div class="row d-flex navbar-light light bg-light head_panel align-items-center">
+          {% if user.is_authenticated and not perms.main.add_post %}
+          <div class="col-lg-10 col-md-9 col-sm-8 size_cont_zap">
+            <a class="navbar-brand px-2" href="{% url 'home' %}"><img src="{% static '/main/images/logomfc.png' %}" alt=""
+                width="102" height="29"></a>
+            <a href="{% url 'home' %}" class="text-color-head px-2">Главная</a>
+            <a href="{% url 'feed' %}" class="text-color-head px-2">Записи</a>
+            <a href="{% url 'allfeed' %}" class="text-color-head px-2">Список публикаций</a>
           </div>
-        </div>
-        {% elif user.is_authenticated and perms.main.add_post %}
-        <div class="col-lg-10 col-md-9 col-sm-8">
-          <a class="navbar-brand px-4" href="{% url 'home' %}"><img src="{% static '/main/images/logomfc.png' %}" alt=""
-              width="102" height="29"></a>
-          <a href="{% url 'home' %}" class="text-color-head px-2">Главная</a>
-          <a href="{% url 'feed' %}" class="text-color-head px-2">Записи</a>
-          <a href="{% url 'add_new' %}" class="text-color-head px-2">Добавить статью</a>
-        </div>
-        <div class="col-lg-2 col-md-3 col-sm-4">
-          <div class="dropdown text-end">
-            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
-              data-bs-toggle="dropdown" aria-expanded="false">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#293133" class="bi bi-person-circle" viewBox="0 0 16 16">
-                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-              </svg>
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="dropdownUser1">
-              <li><a class="dropdown-item text-color-head" href="{% url 'profile' %}">{{ user.username }}</a></li>
-              <li><a class="dropdown-item text-color-head" href="{% url 'logout' %}">Выход</a></li>
-            </ul>
+          <div class="col-lg-2 col-md-3 col-sm-4">
+            <div class="dropdown text-end">
+              <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#293133" class="bi bi-person-circle" viewBox="0 0 16 16">
+                  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                </svg>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdownUser1">
+                <li><a class="dropdown-item text-color-head" href="{% url 'profile' %}">{{ user.username }}</a></li>
+                <li><a class="dropdown-item text-color-head" href="{% url 'logout' %}">Выход</a></li>
+              </ul>
+            </div>
           </div>
-        </div>
-        {% else %}
-        <div class="col-lg-9 col-md-9 col-sm-8">
-          <a class="navbar-brand px-4" href="{% url 'home' %}"><img src="{% static '/main/images/logomfc.png' %}" alt=""
-              width="102" height="29"></a>
-          <a href="{% url 'home' %}" class="text-color-head px-2">Главная</a>
-          <a href="{% url 'feed' %}" class="text-color-head px-2">Записи</a>
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-4">
-          <a href="{% url 'login' %}" class="text-color-head px-2">Авторизация</a>
-          <a href="{% url 'register' %}" class="text-color-head px-2">Регистрация</a>
-        {% endif %}
+          {% elif user.is_authenticated and perms.main.add_post %}
+          <div class="col-lg-10 col-md-9 col-sm-8 size_cont_zap">
+            <a class="navbar-brand px-2" href="{% url 'home' %}"><img src="{% static '/main/images/logomfc.png' %}" alt=""
+                width="102" height="29"></a>
+            <a href="{% url 'home' %}" class="text-color-head px-2">Главная</a>
+            <a href="{% url 'feed' %}" class="text-color-head px-2">Записи</a>
+            <a href="{% url 'allfeed' %}" class="text-color-head px-2">Список публикаций</a>
+            <a href="{% url 'add_new' %}" class="text-color-head px-2">Добавить статью</a>
+          </div>
+          <div class="col-lg-2 col-md-3 col-sm-4">
+            <div class="dropdown text-end">
+              <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#293133" class="bi bi-person-circle" viewBox="0 0 16 16">
+                  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                </svg>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdownUser1">
+                <li><a class="dropdown-item text-color-head" href="{% url 'profile' %}">{{ user.username }}</a></li>
+                <li><a class="dropdown-item text-color-head" href="{% url 'logout' %}">Выход</a></li>
+              </ul>
+            </div>
+          </div>
+          {% else %}
+          <div class="col-lg-9 col-md-8 col-sm-7 size_cont_zap">
+            <a class="navbar-brand px-2" href="{% url 'home' %}"><img src="{% static '/main/images/logomfc.png' %}" alt=""
+                width="102" height="29"></a>
+            <a href="{% url 'home' %}" class="text-color-head px-2">Главная</a>
+            <a href="{% url 'feed' %}" class="text-color-head px-2">Записи</a>
+            <a href="{% url 'allfeed' %}" class="text-color-head px-2">Список публикаций</a>
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-5 size_cont_zap">
+            <a href="{% url 'login' %}" class="text-color-head px-2">Авторизация</a>
+            <a href="{% url 'register' %}" class="text-color-head px-2">Регистрация</a>
+          {% endif %}
+          </div>
         </div>
       </div>
-    </div>
-  </header>
+    </header>
   
   <!-- Контент из БД -->
   <div class="container">
