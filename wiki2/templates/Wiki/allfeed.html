@@ -8,9 +8,9 @@
             {% for post in post %}
             {% autoescape on %}
             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 mt-2">
-                <div class="list-group">
+                <div class="list-group mb-2 box-hight">
                     <a href="{{ post.get_absolute_url }}"
-                        class="list-group-item list-group-item-action nav-link-allfeed">{{post.title|truncatechars:40}}</a>
+                        class="nav-link-allfeed ">{{post.title|truncatechars:40}}</a>
                 </div>
             </div>
             {% endautoescape %}

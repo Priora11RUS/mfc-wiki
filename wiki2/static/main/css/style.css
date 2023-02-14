@@ -208,3 +208,11 @@ a.ui-button:active,
 .nav-link-allfeed.active {
     color: #ff0000;
 }
+
+.box-hight {
+   height: 55px;
+   overflow: hidden;
+   border: 1px solid #ddd;
+   padding: 5px 10px;
+   justify-content: center
+}
