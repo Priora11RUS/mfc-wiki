@@ -1,22 +1,23 @@
 <!-- Расширяем базовй шаблон -->
 {% extends 'wiki/base.html' %}
 {% block content %}
-<div class="container mt-3">
-<form method="post">
-    {% csrf_token %}
-    <div class="row justify-content-center">
-        <div class="col-10">
-            <div class="form-error">{{form.non_field_errors}}</div>
-            {% for f in form %} <!-- Вывод форм-->
-            <h6><label class="form-label mb-3" for="{{ f.id_for_label }}">{{f.label}}</label>{{ f }}</h6>
-            <div class="form-error">{{ f.errors }}</div>
-            {% endfor %}
-            <div class="django-ckeditor-widget">{{ form.media }}</div> <!-- Форма для размещения публикаций -->
-            <button type="submit" class="btn btn-success">Сохранить</button>
-            <!-- Кнопка отправки данных на сервер -->
-        </div>
-        </div>
-    </form>
+<div class="feed mt-2">
+    <div class="container mt-3">
+        <form method="post">
+            {% csrf_token %}
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="form-error">{{form.non_field_errors}}</div>
+                    <div class="mb-3">{{form.title}}</div>
+                    <div class="mb-2">{{form.slug}}</div>
+                    <div class="mb-2">{{form.content}}</div>
+                    <div class="mb-2">{{form.file}}</div> <!-- Вывод форм-->
+                    <div class="django-ckeditor-widget">{{ form.media }}</div> <!-- Форма для размещения публикаций -->
+                    <button type="submit" class="btn btn-success">Сохранить</button>
+                    <!-- Кнопка отправки данных на сервер -->
+                </div>
+            </div>
+        </form>
     </div>
-</form>
+</div>
 {% endblock %}
